@@ -1,4 +1,4 @@
-export const GenderOptions = ["Male", "Female", "Other"];
+export const GenderOptions = ["male", "female", "other"];
 
 export const PatientFormDefaultValues = {
   firstName: "",
@@ -6,7 +6,7 @@ export const PatientFormDefaultValues = {
   email: "",
   phone: "",
   birthDate: new Date(Date.now()),
-  gender: "Male" as Gender,
+  gender: "male" as Gender,
   address: "",
   occupation: "",
   emergencyContactName: "",
@@ -26,56 +26,55 @@ export const PatientFormDefaultValues = {
   privacyConsent: false,
 };
 
+// export const IdentificationTypes = [
+//   "Birth Certificate",
+//   "Driver's License",
+//   "Medical Insurance Card/Policy",
+//   "Military ID Card",
+//   "National Identity Card",
+//   "Passport",
+//   "Resident Alien Card (Green Card)",
+//   "Social Security Card",
+//   "State ID Card",
+//   "Student ID Card",
+//   "Voter ID Card",
+// ];
 export const IdentificationTypes = [
-  "Birth Certificate",
-  "Driver's License",
-  "Medical Insurance Card/Policy",
-  "Military ID Card",
-  "National Identity Card",
-  "Passport",
-  "Resident Alien Card (Green Card)",
-  "Social Security Card",
-  "State ID Card",
-  "Student ID Card",
-  "Voter ID Card",
+  "Paulo Goncalves",
+  " Josh Goncalves",
+  "Facebook",
+  "Web site - coolseasonllc.com",
+  "others",
 ];
 
 export const Doctors = [
   {
-    image: "/assets/images/dr-green.png",
-    name: "John Green",
+    image: "/assets/images/electric.png",
+    name: "Central Electric System",
   },
   {
-    image: "/assets/images/dr-cameron.png",
-    name: "Leila Cameron",
+    image: "/assets/images/gas.png",
+    name: "Central Gas System",
   },
   {
-    image: "/assets/images/dr-livingston.png",
-    name: "David Livingston",
+    image: "/assets/images/1-zone.png",
+    name: "Mini-Split 1 zone",
   },
   {
-    image: "/assets/images/dr-peter.png",
-    name: "Evan Peter",
+    image: "/assets/images/2-zone.png",
+    name: "Mini-Split 2 zone",
   },
   {
-    image: "/assets/images/dr-powell.png",
-    name: "Jane Powell",
+    image: "/assets/images/3-zone.png",
+    name: "Mini-Split 3 zone",
   },
   {
-    image: "/assets/images/dr-remirez.png",
-    name: "Alex Ramirez",
+    image: "/assets/images/4-zone.png",
+    name: "Mini-Split 4 or 5 zone",
   },
   {
-    image: "/assets/images/dr-lee.png",
-    name: "Jasmine Lee",
-  },
-  {
-    image: "/assets/images/dr-cruz.png",
-    name: "Alyana Cruz",
-  },
-  {
-    image: "/assets/images/dr-sharma.png",
-    name: "Hardik Sharma",
+    image: "/assets/images/package.png",
+    name: "Package unit",
   },
 ];
 

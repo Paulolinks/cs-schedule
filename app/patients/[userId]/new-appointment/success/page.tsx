@@ -22,11 +22,11 @@ const RequestSuccess = async ({
       <div className="success-img">
         <Link href="/">
           <Image
-            src="/assets/icons/logo-full.svg"
+            src="/assets/icons/logo-full03.png"
             height={1000}
             width={1000}
             alt="logo"
-            className="h-10 w-fit"
+            className="mb-12 h-30 w-40"
           />
         </Link>
 
@@ -54,7 +54,7 @@ const RequestSuccess = async ({
               height={100}
               className="size-6"
             />
-            <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
+            <p className="whitespace-nowrap"> {doctor?.name}</p>
           </div>
           <div className="flex gap-2">
             <Image
@@ -68,12 +68,16 @@ const RequestSuccess = async ({
         </section>
 
         <Button variant="outline" className="shad-primary-btn" asChild>
+          <Link href="/">New Appointment</Link>
+        </Button>
+
+        {/* <Button variant="outline" className="shad-primary-btn" asChild>
           <Link href={`/patients/${userId}/new-appointment`}>
             New Appointment
           </Link>
-        </Button>
+        </Button> */}
 
-        <p className="copyright">© 2024 CarePluse</p>
+        <p className="copyright">© 2024 CS confort Time llc</p>
       </div>
     </div>
   );

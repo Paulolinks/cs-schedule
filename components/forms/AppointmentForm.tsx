@@ -31,7 +31,7 @@ export const AppointmentForm = ({
 }: {
   userId: string;
   patientId: string;
-  type: "create" | "schedule" | "cancel";
+  type: "create" | "cancel" | "schedule";
   appointment?: Appointment;
   setOpen?: Dispatch<SetStateAction<boolean>>;
 }) => {
@@ -39,6 +39,7 @@ export const AppointmentForm = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const AppointmentFormValidation = getAppointmentSchema(type);
+  // console.log(appointment);
 
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
@@ -48,14 +49,104 @@ export const AppointmentForm = ({
         ? new Date(appointment?.schedule!)
         : new Date(Date.now()),
       reason: appointment ? appointment.reason : "",
-      note: appointment?.note || "",
-      cancellationReason: appointment?.cancellationReason || "",
+      note: appointment ? appointment.note : "",
+      cancellationReason:
+        appointment && appointment.cancellationReason !== null
+          ? appointment.cancellationReason
+          : undefined,
     },
   });
+
+  // const form = useForm<z.infer<typeof AppointmentFormValidation>>({
+  //   resolver: zodResolver(AppointmentFormValidation),
+  //   defaultValues: {
+  //     primaryPhysician: appointment ? appointment?.primaryPhysician : "",
+  //     schedule: appointment
+  //       ? new Date(appointment?.schedule!)
+  //       : new Date(Date.now()),
+  //     reason: appointment ? appointment.reason : "",
+  //     note: appointment ? appointment.note : "",
+  //     cancellationReason: appointment ? appointment.cancellationReason : "",
+  //   },
+  // });
+
+  // const onSubmit = async (
+  //   values: z.infer<typeof AppointmentFormValidation>
+  // ) => {
+  //   console.log("Submitting form with type:", type);
+
+  //   setIsLoading(true);
+
+  //   let status: Status;
+  //   switch (type) {
+  //     case "schedule":
+  //       status = "scheduled";
+  //       break;
+  //     case "cancel":
+  //       status = "cancelled";
+  //       break;
+  //     default:
+  //       status = "pending";
+  //   }
+
+  //   console.log("Status set to:", status);
+
+  //   try {
+  //     if (type === "create" && patientId) {
+  //       const appointment = {
+  //         userId,
+  //         patient: patientId,
+  //         primaryPhysician: values.primaryPhysician,
+  //         schedule: new Date(values.schedule),
+  //         reason: values.reason!,
+  //         status,
+  //         note: values.note,
+  //       };
+
+  //       const newAppointment = await createAppointment(appointment);
+
+  //       if (newAppointment) {
+  //         form.reset();
+  //         router.push(
+  //           `/patients/${userId}/new-appointment/success?appointmentId=${newAppointment.$id}`
+  //         );
+  //       }
+  //     } else {
+  //       console.log("Updating appointment...");
+
+  //       const appointmentToUpdate = {
+  //         userId,
+  //         appointmentId: appointment?.$id!,
+  //         appointment: {
+  //           primaryPhysician: values?.primaryPhysician,
+  //           schedule: new Date(values?.schedule),
+  //           status,
+  //           cancellationReason: values?.cancellationReason,
+  //         },
+  //         type,
+  //         timeZone: "America/New_York", // Example values
+  //       };
+
+  //       const updatedAppointment = await updateAppointment(appointmentToUpdate);
+
+  //       if (updatedAppointment) {
+  //         console.log("Appointment updated successfully.");
+  //         setOpen && setOpen(false);
+  //         form.reset();
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating appointment:", error);
+  //   }
+
+  //   setIsLoading(false);
+  // };
 
   const onSubmit = async (
     values: z.infer<typeof AppointmentFormValidation>
   ) => {
+    // console.log("Submitting form with type:", type);
+
     setIsLoading(true);
 
     let status;
@@ -69,6 +160,7 @@ export const AppointmentForm = ({
       default:
         status = "pending";
     }
+    // console.log("Status set to:", status);
 
     try {
       if (type === "create" && patientId) {
@@ -91,16 +183,19 @@ export const AppointmentForm = ({
           );
         }
       } else {
+        // console.log("Update here");
+
         const appointmentToUpdate = {
           userId,
           appointmentId: appointment?.$id!,
           appointment: {
-            primaryPhysician: values.primaryPhysician,
-            schedule: new Date(values.schedule),
+            primaryPhysician: values?.primaryPhysician,
+            schedule: new Date(values?.schedule),
             status: status as Status,
-            cancellationReason: values.cancellationReason,
+            cancellationReason: values?.cancellationReason,
           },
           type,
+          timeZone: "America/New_York", // Example values
         };
 
         const updatedAppointment = await updateAppointment(appointmentToUpdate);
@@ -117,6 +212,7 @@ export const AppointmentForm = ({
   };
 
   let buttonLabel;
+
   switch (type) {
     case "cancel":
       buttonLabel = "Cancel Appointment";
@@ -146,8 +242,8 @@ export const AppointmentForm = ({
               fieldType={FormFieldType.SELECT}
               control={form.control}
               name="primaryPhysician"
-              label="Doctor"
-              placeholder="Select a doctor"
+              label="Select the New Ac System"
+              placeholder="Select an option"
             >
               {Doctors.map((doctor, i) => (
                 <SelectItem key={doctor.name + i} value={doctor.name}>
@@ -169,7 +265,7 @@ export const AppointmentForm = ({
               fieldType={FormFieldType.DATE_PICKER}
               control={form.control}
               name="schedule"
-              label="Expected appointment date"
+              label="Expected Estimate / Installation day"
               showTimeSelect
               dateFormat="MM/dd/yyyy  -  h:mm aa"
             />
@@ -181,8 +277,8 @@ export const AppointmentForm = ({
                 fieldType={FormFieldType.TEXTAREA}
                 control={form.control}
                 name="reason"
-                label="Appointment reason"
-                placeholder="Annual montly check-up"
+                label="Estimate Number"
+                placeholder="Estimate #6449 or your referency"
                 disabled={type === "schedule"}
               />
 
@@ -191,7 +287,7 @@ export const AppointmentForm = ({
                 control={form.control}
                 name="note"
                 label="Comments/notes"
-                placeholder="Prefer afternoon appointments, if possible"
+                placeholder="Message"
                 disabled={type === "schedule"}
               />
             </div>

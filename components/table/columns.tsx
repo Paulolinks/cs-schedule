@@ -19,7 +19,7 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "patient",
-    header: "Patient",
+    header: "Client",
     cell: ({ row }) => {
       const appointment = row.original;
       return <p className="text-14-medium ">{appointment.patient.name}</p>;
@@ -51,7 +51,7 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "primaryPhysician",
-    header: "Doctor",
+    header: "AC System",
     cell: ({ row }) => {
       const appointment = row.original;
 
@@ -68,7 +68,7 @@ export const columns: ColumnDef<Appointment>[] = [
             height={100}
             className="size-8"
           />
-          <p className="whitespace-nowrap">Dr. {doctor?.name}</p>
+          <p className="whitespace-nowrap"> {doctor?.name}</p>
         </div>
       );
     },
@@ -76,23 +76,23 @@ export const columns: ColumnDef<Appointment>[] = [
   {
     id: "actions",
     header: () => <div className="pl-4">Actions</div>,
-    cell: ({ row }) => {
-      const appointment = row.original;
+    cell: ({ row: { original: data } }) => {
+      // const appointment = row.original;
 
       return (
         <div className="flex gap-1">
           <AppointmentModal
-            patientId={appointment.patient.$id}
-            userId={appointment.userId}
-            appointment={appointment}
+            patientId={data.patient.$id}
+            userId={data.userId}
+            appointment={data}
             type="schedule"
             title="Schedule Appointment"
             description="Please confirm the following details to schedule."
           />
           <AppointmentModal
-            patientId={appointment.patient.$id}
-            userId={appointment.userId}
-            appointment={appointment}
+            patientId={data.patient.$id}
+            userId={data.userId}
+            appointment={data}
             type="cancel"
             title="Cancel Appointment"
             description="Are you sure you want to cancel your appointment?"
@@ -102,3 +102,24 @@ export const columns: ColumnDef<Appointment>[] = [
     },
   },
 ];
+
+// cell: ({ row }) => {
+//   const appointment = row.original;
+{
+  /* <AppointmentModal
+patientId={appointment.patient.$id}
+userId={appointment.userId}
+appointment={appointment}
+type="schedule"
+title="Schedule Appointment"
+description="Please confirm the following details to schedule."
+/>
+<AppointmentModal
+patientId={appointment.patient.$id}
+userId={appointment.userId}
+appointment={appointment}
+type="cancel"
+title="Cancel Appointment"
+description="Are you sure you want to cancel your appointment?"
+/> */
+}
