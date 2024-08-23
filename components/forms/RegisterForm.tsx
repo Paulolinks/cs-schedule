@@ -147,8 +147,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           </div>
 
           {/* BirthDate & Gender */}
-          {/* ESSE AKI */}
-
+          {/* eslint-disable-next-line no-unused-vars */}
           {/* <div className="flex flex-col gap-6 xl:flex-row">
             <CustomFormField
               fieldType={FormFieldType.DATE_PICKER}
