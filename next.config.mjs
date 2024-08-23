@@ -1,21 +1,10 @@
-import { withSentryConfig } from "@sentry/nextjs";
+// @ts-check
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreBuildErrors: true,
-  },
+  /* config options here */
 };
 
-export default withSentryConfig(nextConfig, {
-  org: "cool season llc",
-  project: "cs schedule",
-  silent: !process.env.CI,
-  widenClientFileUpload: true,
-  hideSourceMaps: true,
-  disableLogger: true,
-  automaticVercelMonitors: true,
-});
+export default nextConfig;
