@@ -5,12 +5,39 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+// export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+
+// export const parseStringify = (value: any) => {
+//   try {
+//     return JSON.parse(JSON.stringify(value));
+//   } catch (error) {
+//     console.error("Failed to stringify and parse value:", error);
+//     return null;
+//   }
+// };
+
+// Remova esse codigo e resolva o problema do undefined, provavelmente o erro esta em validations e registerForm
+
+export const parseStringify = (value: any) => {
+  try {
+    if (value === undefined) {
+      console.warn("Undefined value passed to parseStringify. Returning null.");
+      return null;
+    }
+    return JSON.parse(JSON.stringify(value));
+  } catch (error) {
+    console.error("Failed to stringify and parse value:", error);
+    return null; // Or handle the error as needed
+  }
+};
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 
 // FORMAT DATE TIME
-export const formatDateTime = (dateString: Date | string, timeZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone) => {
+export const formatDateTime = (
+  dateString: Date | string,
+  timeZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone
+) => {
   const dateTimeOptions: Intl.DateTimeFormatOptions = {
     // weekday: "short", // abbreviated weekday name (e.g., 'Mon')
     month: "short", // abbreviated month name (e.g., 'Oct')
