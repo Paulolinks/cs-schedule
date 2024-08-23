@@ -147,40 +147,6 @@ const RegisterForm = ({ user }: { user: User }) => {
           </div>
 
           {/* BirthDate & Gender */}
-          {/* eslint-disable-next-line no-unused-vars */}
-          {/* <div className="flex flex-col gap-6 xl:flex-row">
-            <CustomFormField
-              fieldType={FormFieldType.DATE_PICKER}
-              control={form.control}
-              name="birthDate"
-              label="Date of birth"
-            />
-
-            <CustomFormField
-              fieldType={FormFieldType.SKELETON}
-              control={form.control}
-              name="gender"
-              label="Gender"
-              renderSkeleton={(field) => (
-                <FormControl>
-                  <RadioGroup
-                    className="flex h-11 gap-6 xl:justify-between"
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    {GenderOptions.map((option, i) => (
-                      <div key={option + i} className="radio-group">
-                        <RadioGroupItem value={option} id={option} />
-                        <Label htmlFor={option} className="cursor-pointer">
-                          {option}
-                        </Label>
-                      </div>
-                    ))}
-                  </RadioGroup>
-                </FormControl>
-              )}
-            />
-          </div> */}
 
           {/* Address & Occupation */}
           <div className="flex flex-col gap-6 xl:flex-row">
@@ -202,25 +168,6 @@ const RegisterForm = ({ user }: { user: User }) => {
           </div>
 
           {/* Emergency Contact Name & Emergency Contact Number */}
-          {/* ESSE AKI */}
-
-          {/* <div className="flex flex-col gap-6 xl:flex-row">
-            <CustomFormField
-              fieldType={FormFieldType.INPUT}
-              control={form.control}
-              name="emergencyContactName"
-              label="Emergency contact name"
-              placeholder="Guardian's name"
-            />
-
-            <CustomFormField
-              fieldType={FormFieldType.PHONE_INPUT}
-              control={form.control}
-              name="emergencyContactNumber"
-              label="Emergency contact number"
-              placeholder="(555) 123-4567"
-            />
-          </div> */}
         </section>
 
         <section className="space-y-6">
@@ -280,67 +227,15 @@ const RegisterForm = ({ user }: { user: User }) => {
               label="Brand Name and Notes"
               placeholder="Goodman, need a pad etc"
             />
-
-            {/* <CustomFormField
-              fieldType={FormFieldType.TEXTAREA}
-              control={form.control}
-              name="currentMedication"
-              label="Others notes"
-              placeholder="Current system is 20 years old"
-            /> */}
           </div>
 
           {/* FAMILY MEDICATION & PAST MEDICATIONS */}
-          {/* ESSE AKI */}
-
-          {/* <div className="flex flex-col gap-6 xl:flex-row">
-            <CustomFormField
-              fieldType={FormFieldType.TEXTAREA}
-              control={form.control}
-              name="familyMedicalHistory"
-              label=" Family medical history (if relevant)"
-              placeholder="Mother had brain cancer, Father has hypertension"
-            />
-
-            <CustomFormField
-              fieldType={FormFieldType.TEXTAREA}
-              control={form.control}
-              name="pastMedicalHistory"
-              label="Past medical history"
-              placeholder="Appendectomy in 2015, Asthma diagnosis in childhood"
-            />
-          </div> */}
-          {/* ESSE AKI */}
         </section>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
             <h2 className="sub-header">Tag Photo Identification</h2>
           </div>
-
-          {/* <CustomFormField
-            fieldType={FormFieldType.SELECT}
-            control={form.control}
-            name="identificationType"
-            label="AC Identification"
-            placeholder="Select identification type"
-          >
-            {IdentificationTypes.map((type, i) => (
-              <SelectItem key={type + i} value={type}>
-                {type}
-              </SelectItem>
-            ))}
-          </CustomFormField> */}
-
-          {/* ESSE AKI */}
-
-          {/* <CustomFormField
-            fieldType={FormFieldType.INPUT}
-            control={form.control}
-            name="identificationNumber"
-            label="Identification Number"
-            placeholder="123456789"
-          /> */}
 
           <CustomFormField
             fieldType={FormFieldType.SKELETON}
@@ -366,22 +261,6 @@ const RegisterForm = ({ user }: { user: User }) => {
             name="treatmentConsent"
             label="I'm not a robot."
           />
-          {/* ESSE AKI */}
-          {/* <CustomFormField
-            fieldType={FormFieldType.CHECKBOX}
-            control={form.control}
-            name="disclosureConsent"
-            label="I consent to the use and disclosure of my health
-            information for treatment purposes."
-          />
-
-          <CustomFormField
-            fieldType={FormFieldType.CHECKBOX}
-            control={form.control}
-            name="privacyConsent"
-            label="I acknowledge that I have reviewed and agree to the
-            privacy policy"
-          /> */}
         </section>
 
         <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
