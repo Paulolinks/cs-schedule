@@ -6,3 +6,8 @@ app/global-error.tsx
 /app/patients/[userId]/register/page.tsx
 /app/admin/page.tsx
 https://nextjs.org/docs/messages/module-not-found
+
+# Example .vercelignore
+
+node_modules
+.next
