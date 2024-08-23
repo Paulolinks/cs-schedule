@@ -66,7 +66,9 @@ const RegisterForm = ({ user }: { user: User }) => {
         email: values.email,
         phone: values.phone,
         birthDate: new Date(values.birthDate),
-        gender: values.gender || "other",
+        // gender: values.gender ?? "other",
+        gender: values.gender,
+
         address: values.address,
         occupation: values.occupation,
         emergencyContactName: values.emergencyContactName,
@@ -113,9 +115,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           <div className="mb-9 space-y-1">
             <h2 className="sub-header">Personal Information</h2>
           </div>
-
           {/* NAME */}
-
           <CustomFormField
             fieldType={FormFieldType.INPUT}
             control={form.control}
@@ -124,7 +124,6 @@ const RegisterForm = ({ user }: { user: User }) => {
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
           />
-
           {/* EMAIL & PHONE */}
           <div className="flex flex-col gap-6 xl:flex-row">
             <CustomFormField
@@ -145,16 +144,14 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder="(555) 123-4567"
             />
           </div>
-
           {/* BirthDate & Gender */}
-          {/* eslint-disable-next-line no-unused-vars */}
-          {/* <div className="flex flex-col gap-6 xl:flex-row">
-            <CustomFormField
+          <div className="flex flex-col gap-6 xl:flex-row">
+            {/* <CustomFormField
               fieldType={FormFieldType.DATE_PICKER}
               control={form.control}
               name="birthDate"
               label="Date of birth"
-            />
+            /> */}
 
             <CustomFormField
               fieldType={FormFieldType.SKELETON}
@@ -180,8 +177,8 @@ const RegisterForm = ({ user }: { user: User }) => {
                 </FormControl>
               )}
             />
-          </div> */}
-
+          </div>
+          {/* eslint-disable-next-line no-unused-vars */}
           {/* Address & Occupation */}
           <div className="flex flex-col gap-6 xl:flex-row">
             <CustomFormField
@@ -200,10 +197,8 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder=" Zip Code"
             />
           </div>
-
           {/* Emergency Contact Name & Emergency Contact Number */}
           {/* ESSE AKI */}
-
           {/* <div className="flex flex-col gap-6 xl:flex-row">
             <CustomFormField
               fieldType={FormFieldType.INPUT}

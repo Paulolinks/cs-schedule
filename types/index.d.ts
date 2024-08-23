@@ -5,7 +5,7 @@ declare type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-declare type Gender = "male" | "female" | "other";
+declare type Gender = "Male" | "Female" | "Other";
 declare type Status = "pending" | "scheduled" | "cancelled";
 
 declare interface CreateUserParams {
@@ -17,25 +17,46 @@ declare interface User extends CreateUserParams {
   $id: string;
 }
 
+// declare interface RegisterUserParams extends CreateUserParams {
+//   userId: string;
+//   birthDate: Date;
+//   gender: Gender;
+//   address: string;
+//   occupation: string;
+//   emergencyContactName: string;
+//   emergencyContactNumber: string;
+//   primaryPhysician: string;
+//   insuranceProvider: string;
+//   insurancePolicyNumber: string;
+//   allergies: string | undefined;
+//   currentMedication: string | undefined;
+//   familyMedicalHistory: string | undefined;
+//   pastMedicalHistory: string | undefined;
+//   identificationType: string | undefined;
+//   identificationNumber: string | undefined;
+//   identificationDocument: FormData | undefined;
+//   privacyConsent: boolean;
+// }
+
 declare interface RegisterUserParams extends CreateUserParams {
   userId: string;
   birthDate: Date;
   gender: Gender;
-  address: string;
-  occupation: string;
-  emergencyContactName: string;
-  emergencyContactNumber: string;
+  address?: string; // Optional
+  occupation?: string; // Optional
+  emergencyContactName?: string; // Optional
+  emergencyContactNumber?: string; // Optional
   primaryPhysician: string;
-  insuranceProvider: string;
-  insurancePolicyNumber: string;
-  allergies: string | undefined;
-  currentMedication: string | undefined;
-  familyMedicalHistory: string | undefined;
-  pastMedicalHistory: string | undefined;
-  identificationType: string | undefined;
-  identificationNumber: string | undefined;
-  identificationDocument: FormData | undefined;
-  privacyConsent: boolean;
+  insuranceProvider?: string; // Optional
+  insurancePolicyNumber?: string; // Optional
+  allergies?: string; // Optional
+  currentMedication?: string; // Optional
+  familyMedicalHistory?: string; // Optional
+  pastMedicalHistory?: string; // Optional
+  identificationType?: string; // Optional
+  identificationNumber?: string; // Optional
+  identificationDocument?: FormData; // Optional
+  privacyConsent?: boolean;
 }
 
 declare type CreateAppointmentParams = {
