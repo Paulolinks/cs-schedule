@@ -39,4 +39,5 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
   );
 };
 
+// Ja tentei de tudo
 export default Register;
