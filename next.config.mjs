@@ -1,9 +1,12 @@
-// @ts-check
+// next.config.mjs
+import path from "path";
 
-/**
- * @type {import('next').NextConfig}
- */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack: (config) => {
+    config.resolve.alias["@"] = path.resolve(__dirname, "src");
+    return config;
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
