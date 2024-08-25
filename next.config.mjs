@@ -1,10 +1,6 @@
-import path from "path";
-
+import { withSentryConfig } from "@sentry/nextjs";
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(__dirname, "src");
-    return config;
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -12,5 +8,3 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 };
-
-export default nextConfig;
