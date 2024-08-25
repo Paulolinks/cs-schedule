@@ -385,5 +385,5 @@ const RegisterForm = ({ user }: { user: User }) => {
     </Form>
   );
 };
-
+// ta certo
 export default RegisterForm;
