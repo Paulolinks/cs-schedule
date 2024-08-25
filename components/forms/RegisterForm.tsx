@@ -198,7 +198,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             />
           </div>
           {/* Emergency Contact Name & Emergency Contact Number */}
-          {/* ESSE AKI */}
+          {/* ESSE AKI APAGUE */}
           {/* <div className="flex flex-col gap-6 xl:flex-row">
             <CustomFormField
               fieldType={FormFieldType.INPUT}
