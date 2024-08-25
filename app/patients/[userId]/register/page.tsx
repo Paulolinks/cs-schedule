@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-// import RegisterForm from "@/components/forms/RegisterForm";
-import { getPatient, getUser } from "@/lib/actions/patient.actions";
 import RegisterForm from "@/components/forms/RegisterForm";
+import { getPatient, getUser } from "@/lib/actions/patient.actions";
 
 const Register = async ({ params: { userId } }: SearchParamProps) => {
   const user = await getUser(userId);
@@ -16,16 +15,16 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[860px] flex-1 flex-col py-10">
           <Image
-            src="/assets/icons/logo-full03.png"
+            src="/assets/icons/logo-full.svg"
             height={1000}
             width={1000}
             alt="patient"
-            className="mb-12 h-30 w-40"
+            className="mb-12 h-10 w-fit"
           />
 
           <RegisterForm user={user} />
 
-          <p className="copyright py-12">© 2024 CS Confort Time llc</p>
+          <p className="copyright py-12">© 2024 CS Confort Time</p>
         </div>
       </section>
 

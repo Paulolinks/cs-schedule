@@ -16,19 +16,12 @@ export function cn(...inputs: ClassValue[]) {
 //   }
 // };
 
-// Remova esse codigo e resolva o problema do undefined, provavelmente o erro esta em validations e registerForm
-
 export const parseStringify = (value: any) => {
-  try {
-    if (value === undefined) {
-      console.warn("Undefined value passed to parseStringify. Returning null.");
-      return null;
-    }
-    return JSON.parse(JSON.stringify(value));
-  } catch (error) {
-    console.error("Failed to stringify and parse value:", error);
-    return null; // Or handle the error as needed
+  if (value === undefined) {
+    console.error("Attempted to stringify undefined value");
+    return null; // or handle accordingly
   }
+  return JSON.parse(JSON.stringify(value));
 };
 
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file);

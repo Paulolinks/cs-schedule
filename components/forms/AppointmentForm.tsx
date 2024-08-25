@@ -57,6 +57,7 @@ export const AppointmentForm = ({
     },
   });
 
+  //aqui
   // const form = useForm<z.infer<typeof AppointmentFormValidation>>({
   //   resolver: zodResolver(AppointmentFormValidation),
   //   defaultValues: {
@@ -141,6 +142,8 @@ export const AppointmentForm = ({
 
   //   setIsLoading(false);
   // };
+
+  // aqui
 
   const onSubmit = async (
     values: z.infer<typeof AppointmentFormValidation>

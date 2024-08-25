@@ -146,12 +146,12 @@ const RegisterForm = ({ user }: { user: User }) => {
           </div>
           {/* BirthDate & Gender */}
           <div className="flex flex-col gap-6 xl:flex-row">
-            {/* <CustomFormField
+            <CustomFormField
               fieldType={FormFieldType.DATE_PICKER}
               control={form.control}
               name="birthDate"
               label="Date of birth"
-            /> */}
+            />
 
             <CustomFormField
               fieldType={FormFieldType.SKELETON}
@@ -276,13 +276,13 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder="Goodman, need a pad etc"
             />
 
-            {/* <CustomFormField
+            <CustomFormField
               fieldType={FormFieldType.TEXTAREA}
               control={form.control}
               name="currentMedication"
               label="Others notes"
               placeholder="Current system is 20 years old"
-            /> */}
+            />
           </div>
 
           {/* FAMILY MEDICATION & PAST MEDICATIONS */}
@@ -305,15 +305,16 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder="Appendectomy in 2015, Asthma diagnosis in childhood"
             />
           </div> */}
-          {/* ESSE AKI */}
         </section>
 
         <section className="space-y-6">
           <div className="mb-9 space-y-1">
             <h2 className="sub-header">Tag Photo Identification</h2>
           </div>
+          {/* ESSE AKI */}
 
-          {/* <CustomFormField
+          {/* 
+          <CustomFormField
             fieldType={FormFieldType.SELECT}
             control={form.control}
             name="identificationType"
