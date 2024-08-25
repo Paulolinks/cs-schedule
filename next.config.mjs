@@ -4,11 +4,11 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  webpack5: true,
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false };
-    return config;
-  },
+  // webpack5: true,
+  // webpack: (config) => {
+  //   config.resolve.fallback = { fs: false };
+  //   return config;
+  // },
   /* config options here */
   typescript: {
     ignoreBuildErrors: true,
