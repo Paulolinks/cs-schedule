@@ -12,3 +12,5 @@ const nextConfig = {
     ignoreDuringBuilds: true, // Add this line
   },
 };
+
+module.exports = nextConfig;
