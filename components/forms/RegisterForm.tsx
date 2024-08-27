@@ -385,4 +385,5 @@ const RegisterForm = ({ user }: { user: User }) => {
   );
 };
 // ta certo
+
 export default RegisterForm;

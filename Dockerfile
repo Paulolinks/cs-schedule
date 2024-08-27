@@ -67,66 +67,28 @@
 # CMD HOSTNAME="0.0.0.0" node server.js
 
 # Use the official Node.js 18 image as the base image
-FROM node:18-alpine AS base
 
-# Install dependencies only when needed
-FROM base AS deps
-# Install libc6-compat, required for compatibility in some cases
-RUN apk add --no-cache libc6-compat
 
+# Start your image with a node base image
+FROM node:18-alpine
+
+# The /app directory should act as the main application directory
 WORKDIR /app
 
-# Install dependencies based on the lockfile available
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm install --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+# Copy the app package and package-lock.json file
+COPY package*.json ./
 
-# Rebuild the source code only when needed
-FROM base AS builder
-WORKDIR /app
+# Copy local directories to the current local directory of our docker image (/app)
+COPY ./src ./src
+COPY ./public ./public
 
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-
-# Optionally disable telemetry during the build
-# ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN \
-  if [ -f yarn.lock ]; then yarn run build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
-# Production image, copy all the files and run the Next.js server
-FROM base AS runner
-WORKDIR /app
-
-ENV NODE_ENV=production
-# Optionally disable telemetry during runtime
-# ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN addgroup --system --gid 1001 nodejs \
-  && adduser --system --uid 1001 nextjs
-
-COPY --from=builder /app/public ./public
-
-# Set the correct permission for prerender cache
-RUN mkdir .next \
-  && chown nextjs:nodejs .next
-
-# Copy the built Next.js app and set permissions
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
+# Install node packages, install serve, build the app, and remove dependencies at the end
+RUN npm install \
+    && npm install -g serve \
+    && npm run build \
+    && rm -fr node_modules
 
 EXPOSE 3000
-ENV PORT=3000
 
-# server.js is created by next build from the standalone output
-CMD ["node", "server.js"]
+# Start the app using serve command
+CMD [ "serve", "-s", "build" ]
