@@ -26,7 +26,7 @@ import CustomFormField, { FormFieldType } from "../CustomFormField";
 import { FileUploader } from "../FileUploader";
 import SubmitButton from "../SubmitButton";
 
-export const RegisterForm = ({ user }: { user: User }) => {
+const RegisterForm = ({ user }: { user: User }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -386,4 +386,4 @@ export const RegisterForm = ({ user }: { user: User }) => {
 };
 // ta certo
 
-// export default RegisterForm;
+export default RegisterForm;
